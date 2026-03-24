@@ -56,24 +56,29 @@
    　 opacity: 0.8; /* 少し透明にする */
    　 cursor: pointer;
 　  }
-    /* 宣伝文専用のレスポンシブ設定 */
+    /* 宣伝文タイトル：絶対に1行に収める設定 */
     .promo-title {
-      /* clamp(最小サイズ, 推奨サイズ(画面幅の割合), 最大サイズ) */
-      font-size: clamp(1.1rem, 4.5vw, 1.8rem); 
-      white-space: nowrap; /* キャッチコピーを一行に収める */
+      /* 画面幅に合わせてかなり柔軟に動くように設定 */
+      font-size: clamp(1rem, 5.5vw, 2rem); 
+      white-space: nowrap;      /* 改行を禁止 */
+      overflow: hidden;         /* 万が一のはみ出しを防止 */
+      text-overflow: ellipsis;  /* もし超えたら「...」にする（保険） */
+      display: block;
+      width: 100%;
       color: #dc3545;
     }
 
+    /* 宣伝文本文：意味の塊で改行させる設定 */
     .promo-body {
-      font-size: clamp(0.85rem, 3vw, 1.2rem);
+      font-size: clamp(0.9rem, 3.2vw, 1.1rem);
       line-height: 1.8;
+      word-break: keep-all;     /* 単語の途中での改行を防止 */
+      overflow-wrap: break-word;
     }
 
-    /* スマホで横幅が足りない時、キャッチコピーがはみ出さないよう調整 */
-    @media (max-width: 400px) {
-      .promo-title {
-        letter-spacing: -1px; /* 文字間隔を少し詰めて収まりを良くする */
-      }
+    /* 本文の中の「塊」を維持するためのクラス */
+    .text-keep {
+      display: inline-block;
     }
   </style>
 </head>
@@ -97,13 +102,17 @@
         <!-- 例: FILE_IDが「1abc...」の場合 -->
         <img src="https://pbs.twimg.com/media/HCt5shmbQAAWB4H?format=jpg&name=medium" alt="Event Flyer" class="flyer-img mb-4" width="100%">
         
-        <div class="section-box text-center">
-          <h2 class="promo-title fw-bold mb-3">最高の夜を、神楽坂で。</h2>
-          <p class="promo-body mb-0">
-            2026年、春。<br>
-            インターネット上で出会った個性豊かな3組のアーティストが東京・神楽坂に集結。<br>
-            シューゲイザー・オルタナ・マスロックが入り混じる<br>
-            ここでしか味わえない音と空間をぜひ体感しに来てください。
+      <div class="section-box text-center">
+        <h2 class="promo-title fw-bold mb-3">最高の夜を、神楽坂で。</h2>
+        <p class="promo-body mb-0">
+            <span class="text-keep">2026年、春。</span>
+            <span class="text-keep">インターネット上で出会った</span>
+            <span class="text-keep">個性豊かな3組のアーティストが</span>
+            <span class="text-keep">東京・神楽坂に集結。</span>
+            <span class="text-keep">シューゲイザーやオルタナ、</span>
+            <span class="text-keep">マスロックが入り混じる</span>
+            <span class="text-keep">ここでしか味わえない</span>
+            <span class="text-keep">音と空間をぜひ体感しに来てください。</span>
           </p>
           <a href="https://t.co/umPTRZKHdK" target="_blank" class="btn btn-danger btn-lg w-100 mt-3">今すぐチケットを予約する</a>
         </div>
