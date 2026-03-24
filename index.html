@@ -56,6 +56,25 @@
    　 opacity: 0.8; /* 少し透明にする */
    　 cursor: pointer;
 　  }
+    /* 宣伝文専用のレスポンシブ設定 */
+    .promo-title {
+      /* clamp(最小サイズ, 推奨サイズ(画面幅の割合), 最大サイズ) */
+      font-size: clamp(1.1rem, 4.5vw, 1.8rem); 
+      white-space: nowrap; /* キャッチコピーを一行に収める */
+      color: #dc3545;
+    }
+
+    .promo-body {
+      font-size: clamp(0.85rem, 3vw, 1.2rem);
+      line-height: 1.8;
+    }
+
+    /* スマホで横幅が足りない時、キャッチコピーがはみ出さないよう調整 */
+    @media (max-width: 400px) {
+      .promo-title {
+        letter-spacing: -1px; /* 文字間隔を少し詰めて収まりを良くする */
+      }
+    }
   </style>
 </head>
 
@@ -79,8 +98,8 @@
         <img src="https://pbs.twimg.com/media/HCt5shmbQAAWB4H?format=jpg&name=medium" alt="Event Flyer" class="flyer-img mb-4" width="100%">
         
         <div class="section-box text-center">
-          <h2 class="h4 fw-bold mb-3" style="color: #dc3545;">最高の夜を、神楽坂で。</h2>
-          <p class="lead mb-0" style="line-height: 1.8;">
+          <h2 class="promo-title fw-bold mb-3">最高の夜を、神楽坂で。</h2>
+          <p class="promo-body mb-0">
             2026年、春。<br>
             インターネット上で出会った個性豊かな3組のアーティストが東京・神楽坂に集結。<br>
             シューゲイザー・オルタナ・マスロックが入り混じる<br>
